@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import CambiarEstadoComentarioForm
 from .models import Comentario
+from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 @login_required
 def estado_comentario(request, id_comentario):
@@ -19,9 +21,6 @@ def estado_comentario(request, id_comentario):
     context = {'form': form}
     return render(request, 'comentarios/estado_comentario.html', context)
 
-
-from django.http import HttpResponseRedirect
-from django.contrib import messages
 
 
 @login_required

@@ -23,6 +23,10 @@ from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
 from .forms import EditProfileForm
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.models import User, Group
+from django.db.models import Q
+from django.contrib.auth.forms import PasswordResetForm
+
 
 
 def home_perfiles(request):
@@ -154,8 +158,6 @@ def perfil(request):
     return render(request, "usuarios/perfil.html", {"user": request.user})
 
 
-from django.contrib.auth.models import User, Group
-from django.db.models import Q
 
 @login_required
 def list_perfil(request):
@@ -250,8 +252,6 @@ def logout_request(request):
 
 
 ##### Olvide Contraseña #####
-
-from django.contrib.auth.forms import PasswordResetForm
 
 
 def password_reset(request):

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "astronexo",
+  "private_key_id": "63c6450367bb8bd91d4efcb0a205473e4e727a54",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDKBv4uYA2zSeT/\nfoUDILYuipJWCRXMZyTWamPqWvFYxFN5bEFVgD2cMiv56iaZkv4jiZQrNqRE1Eoh\ncBTj5h/U5Oad+Yb5A+TFtFABzxJRSui6G1cSw1V5yLTJ8zCXX1ysVExOuxsRadeN\nX8Ka/cHP++yowoQGeb7LxqS5wbgOqtD1osdNw1/DGT00mT4UW0OTycu9r3y/vS7N\nvEZShgw2tqb5DpLm+NuFWF25qCi2okkTZ+9qTvGSNZXRzTbhkRrOY+K8un0GkEw+\nl8bqBPB38hUai2uBt5Q1ZJQ8S/oJ1+VfGJOmdWKEkhDELTSkEVlQU0IZ1WY4JYCk\nGakmAJTbAgMBAAECggEADoRndM2ng7VQ+fW4I9Fl8KePJxTgDCAdSuBk7aI7VYrw\ntKOizjy421B/oyXAQFOKZONYp6z1gOdVrFwcJC7qeqc4KyyTFlxr7rOroXWlIKem\nsY46uOPFxfU2MzeBIQopOU5AGCg5zwvcAWda2ehXf6qKsasd8ZkuAgFJik+b+kcL\nSJwrbONoSwVR641ZQcPfzPduxeDgn4CZM3eLU/aEK8Gsp1WfNtTRLepyG35gW8pY\nDi4eXby8RCc4vOkUEmDdHJJtdhBJTDTQ4egLT9I8SGiX/Wr6RcmL2vsZAH/MJ5/7\nqzn/EVupepHh7Jgwlb0ipghma9VPfm+RGae2fzGTAQKBgQDx4TzGrGN3S/+CK882\nIFJMBNe4B2LyYPXPnQMol41vuCqOuIaRXztqL6ya0tHwgxE1AbEQdUZiy2EBp+OR\n3S+XwLsCvf4Px53WPzjB5Ija0PtIGhetraS2+qPiwR/AQYBLyETwdoGgr3bMo0+K\nFOafRyvNkSDkoTahdPQ48/w/WQKBgQDV0i5ogmqktZAvPsEScEbsyR3L9TsU7oNY\n4YjDzypTT41giE7TVfHF18sSTpokOVz5ORkNR6MfG+Cib2UY8USMLiflCr7H5E3x\nt9r3jCQpE//ERGwTUD35GxA0eYjkbq08yPcHLC4FoANkrqrLJJmZrq2XYmCu50rN\nSaE55QoDUwKBgQDAgzV9Jv2vmIRPVZEBkm4N5RjQdsiRAw0B5gT6jMzca2cr2r/3\n+iTu2ez1+O9xDtBmMOd9oumXfinCSJ6+nJ3hmVr+zrrkUktUl1MUN1GZXxVwiJvp\n9rePjyNbObyMp1V2e3orLRb1DlJug1iuHP6FLP83CNh2P72cedpbbg2JWQKBgQDB\ncjKCYttQwOL9m2zZ3bKNLzdB+0/ElDVJCGLPpHHKhcKGf0uxb6QZNi6HFY3nD+7J\nm5rKpPEzh+knjFiOxFkb6fY2Bg6skiTid1AnfiaI84sGalDM+F/ZK17x2rK62Fbr\nE3ZKivHoLOhlApGK0EYXAC4VM+/8zUyjheXTlyAD+QKBgQDGZKTbe0L0Wl5B8kEy\nyvJPCq3X4pgSsz10obTK7kjE8fe4HRFF95hO1NYaPLVHN+6pffNa88jsjLKesR6w\nqMhN6p3nu2c+cOUpig75a3VvLUrIyEiWtlFlS6R2aZCy3xgRAWb4fobOkO1sn4fE\nLUtnRknC6EHx0j7h5Ls30OLLtQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "usuarios@astronexo.iam.gserviceaccount.com",
+  "client_id": "100224930250897423047",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/usuarios%40astronexo.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -1,10 +1,8 @@
 from django.shortcuts import render,get_object_or_404, redirect
 from .forms import NoticiaForm, ArticulosForm, GaleriaForm, AboutForm
-
 from .models import Publicacion,Seccion
 from imagen.models import Imagen
 from django.contrib.auth.decorators import login_required
-
 from .models import *
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -18,8 +16,8 @@ from django.core.mail import send_mail
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
-
-
+from django.db.models import Q
+from django.contrib.auth.models import AnonymousUser
 
 
 
@@ -407,44 +405,8 @@ def eliminar_galeria(request, galeria_id):
         galeria.delete()
         return redirect('lista_galeria')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ######### NOTICIAS ###############
 
-
-from django.db.models import Q
 
 def gestionar_noticia(request):
     return render(request, 'noticias/gestionar_noticia.html')
@@ -697,7 +659,6 @@ def publicacion_detalle(request, id):
 
 #ACERCA DEEEEE
 
-from django.contrib.auth.models import AnonymousUser
 
 def home_acercade(request):
     if Seccion.objects.count() == 0:

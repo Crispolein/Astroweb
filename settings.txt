@@ -11,11 +11,25 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from google.oauth2 import service_account
+from google.cloud import storage
 import os
+
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'astronexo-63c6450367bb.json'
+#Nombre del bucket en Google Cloud Storage
+
+GS_BUCKET_NAME = 'astronexo_bucket'
+
+
+# Configuración del almacenamiento de medios
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+MEDIA_URL = 'https://storage.googleapis.com/astronexo_bucket/'
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -34,7 +48,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,6 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "core",
+    'storages',
     #'usuarios',
     "publicaciones",
     "imagen",
@@ -96,11 +111,13 @@ WSGI_APPLICATION = "astro_web.wsgi.application"
 
 DATABASES = {
     "default": {
-        "HOST": "localhost",
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "",
-        "USER": "postgres",
-        "PASSWORD": "",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "astroweb",
+        "USER": "astroweb",
+        "HOST": "34.123.68.75",
+        "PASSWORD": "}?/zR1^#z@;UC|,n",
+        'PORT': '5432',
+
     }
 }
 
@@ -150,8 +167,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "core", "media")
-MEDIA_URL = "/media/"
 
 
 LOGIN_REDIRECT_URL = "home"

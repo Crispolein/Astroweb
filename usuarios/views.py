@@ -66,7 +66,7 @@ def login_request(request):
             return redirect("home")
         else:
             # Handle the case where authentication fails
-            messages.error(request, "Invalid username or password.")
+            messages.error(request, "Correo o contraseña invalidos.")
     else:
         print(form.errors)
     return render(request, "usuarios/login.html", context=context)
@@ -247,7 +247,7 @@ def delete_perfil(request, user_id):
 
 def logout_request(request):
     logout(request)
-    messages.info(request, "Logged out successfully!")
+    messages.info(request, "A cerrado la sesion con exito")
     return redirect("home")
 
 

@@ -147,6 +147,16 @@
               </ul>
             </li>
             <li class="nav-dropdown">
+              <a class="nav-white"
+                >Gestionar Comentarios <i class="bi bi-chevron-down"></i
+              ></a>
+              <ul class="dropdown-content">
+                <li>
+                  <a href="{% url 'lista_articulos' %}">Revision de comentarios</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-dropdown">
               {% for group in user.groups.all %} {% if group.name == "Admin" %}
               <a class="nav-white"
                 >Gestionar Usuario<i class="bi bi-chevron-down"></i

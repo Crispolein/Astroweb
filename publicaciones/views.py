@@ -135,15 +135,11 @@ def ver_articulo(request, id_articulo):
         if form.is_valid():
             nuevo_comentario = form.save(commit=False)
             nuevo_comentario.idPublicacion = articulo
+            
+            messages.success(request, 'Comentario enviado con éxito')
             nuevo_comentario.save()
 
-            # Enviar correo al usuario creador de la noticia
-            subject = 'Nuevo comentario en tu publicación'
-            message = f'Se ha añadido un nuevo comentario a tu publicación "{articulo.titulo}".'
-            from_email = 'codemintest@gmail.com'
-            recipient_list = [articulo.usuario_creador.email]
 
-            send_mail(subject, message, from_email, recipient_list)
 
             return HttpResponseRedirect(request.path_info)
 
@@ -351,15 +347,8 @@ def ver_galeria(request, id_galeria):
         if form.is_valid():
             nuevo_comentario = form.save(commit=False)
             nuevo_comentario.idPublicacion = galeria
+            messages.success(request, 'Comentario enviado con éxito')
             nuevo_comentario.save()
-
-            # Enviar correo al usuario creador de la noticia
-            subject = 'Nuevo comentario en tu publicación'
-            message = f'Se ha añadido un nuevo comentario a tu publicación "{galeria.titulo}".'
-            from_email = 'codemintest@gmail.com'
-            recipient_list = [galeria.usuario_creador.email]
-
-            send_mail(subject, message, from_email, recipient_list)
 
             return HttpResponseRedirect(request.path_info)
 
@@ -476,14 +465,8 @@ def ver_noticias(request, id_noticia):
         if form.is_valid():
             nuevo_comentario = form.save(commit=False)
             nuevo_comentario.idPublicacion = noticia
+            messages.success(request, 'Comentario enviado con éxito')
             nuevo_comentario.save()
-
-            subject = 'Nuevo comentario en tu publicación'
-            message = f'Se ha añadido un nuevo comentario a tu publicación "{noticia.titulo}".'
-            from_email = 'codemintest@gmail.com'
-            recipient_list = [noticia.usuario_creador.email]
-
-            send_mail(subject, message, from_email, recipient_list)
 
           
             return HttpResponseRedirect(request.path_info)
@@ -649,6 +632,7 @@ def publicacion_detalle(request, id):
             nuevo_comentario = form.save(commit=False)
             nuevo_comentario.idPublicacion = publicacion
             nuevo_comentario.estado = 'Revision'
+            messages.success(request, 'Comentario enviado con éxito')
             nuevo_comentario.save()
             return redirect('nombre_de_la_url_para_detalle_de_publicacion', id=id)
     else:

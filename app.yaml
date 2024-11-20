@@ -2,8 +2,12 @@ runtime: python39
 entrypoint: gunicorn -b :$PORT astro_web.wsgi
 
 handlers:
-  - url: /static
-    static_dir: core/static
-
-  - url: /.*
+  - url: /static/
+    static_files: core/static/
+    upload: core/static/
+  - url: /assets/
+    static_files: assets/
+    upload: assets/
+  - url: /.*  # Maneja todas las demás rutas con Django
     script: auto
+

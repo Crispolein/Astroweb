@@ -2316,3 +2316,37 @@ a.overlay:hover p {
     padding: 10px; /* Espaciado interno del mensaje */
     margin: 10px; /* Espaciado externo del mensaje */
   }
+  .message-box {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .messages {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .messages li {
+    margin-bottom: 10px;
+  }
+  
+  .close-message {
+    background-color: #f8d7da;
+    border: none;
+    color: #721c24;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+  }

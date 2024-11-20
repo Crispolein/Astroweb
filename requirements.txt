@@ -1,3 +1,4 @@
+gcloud
 gunicorn==20.1.0
 django-storages
 google-cloud-storage

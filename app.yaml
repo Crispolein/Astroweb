@@ -2,12 +2,33 @@ runtime: python39
 entrypoint: gunicorn -b :$PORT astro_web.wsgi
 
 handlers:
-  - url: /static/
-    static_files: core/static/
-    upload: core/static/
-  - url: /assets/
-    static_files: assets/
-    upload: assets/
-  - url: /.*  # Maneja todas las demás rutas con Django
-    script: auto
+  # Manejo de archivos estáticos comunes (css, js, imágenes)
+  - url: /static/css/(.*)
+    static_files: core/static/css/\1
+    upload: core/static/css/.*
 
+  - url: /static/js/(.*)
+    static_files: core/static/js/\1
+    upload: core/static/js/.*
+
+  - url: /static/assets/(.*)
+    static_files: core/static/assets/\1
+    upload: core/static/assets/.*
+
+  - url: /static/ckeditor/(.*)
+    static_files: core/static/ckeditor/\1
+    upload: core/static/ckeditor/.*
+
+  # Opcional: Manejar otros archivos de imágenes u otros recursos que puedas tener en la carpeta `core/static`
+  - url: /static/img/(.*)
+    static_files: core/static/img/\1
+    upload: core/static/img/.*
+
+  # Favicon u otros archivos específicos
+  - url: /favicon.ico
+    static_files: core/static/favicon.ico
+    upload: core/static/favicon.ico
+
+  # Ruta para manejar todas las demás rutas con Django
+  - url: /.*  # Esto maneja todas las rutas dinámicas de Django
+    script: auto

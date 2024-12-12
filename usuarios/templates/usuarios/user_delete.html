@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrar Cuenta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-center">Iniciar Sesión</h3>
+                <form id="loginForm" class="text-center">
+                    <div class="mb-3">
+                        <input type="email" id="email" class="form-control" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" id="password" class="form-control" placeholder="Contraseña" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </form>
+                <div id="loginStatus" class="mt-3 text-center text-danger"></div>
+
+                <div id="deleteAccountSection" class="mt-4 d-none">
+                    <h3 class="card-title text-center">Borrar Cuenta</h3>
+                    <p class="text-center">Ingrese su nombre de usuario para confirmar la eliminación.</p>
+                    <form id="deleteAccountForm" class="text-center">
+                        <div class="mb-3">
+                            <input type="text" id="username" class="form-control" placeholder="Nombre de usuario" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Borrar mi cuenta</button>
+                    </form>
+                    <div id="deleteStatus" class="mt-3 text-center text-danger"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0XKsN3cVE8g8rH9ctU4ovBc7fBSbczDA",
+            authDomain: "astroapp-9386d.firebaseapp.com",
+            projectId: "astroapp-9386d",
+            storageBucket: "astroapp-9386d.appspot.com",
+            messagingSenderId: "1074500372330",
+            appId: "1:1074500372330:android:a550c1ad3b5646ced1c713"
+        };
+
+        // Inicializar Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, deleteUser, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const loginForm = document.getElementById('loginForm');
+        const loginStatus = document.getElementById('loginStatus');
+        const deleteAccountSection = document.getElementById('deleteAccountSection');
+        const deleteAccountForm = document.getElementById('deleteAccountForm');
+        const deleteStatus = document.getElementById('deleteStatus');
+
+        // Manejar inicio de sesión
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                loginStatus.textContent = 'Inicio de sesión exitoso';
+                loginStatus.classList.remove('text-danger');
+                loginStatus.classList.add('text-success');
+                deleteAccountSection.classList.remove('d-none');
+            } catch (error) {
+                console.error('Error al iniciar sesión:', error);
+                loginStatus.textContent = 'Error al iniciar sesión. Verifique sus credenciales.';
+            }
+        });
+
+        // Manejar eliminación de cuenta
+        deleteAccountForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const user = auth.currentUser;
+
+            if (!user) {
+                deleteStatus.textContent = 'No hay usuario autenticado.';
+                return;
+            }
+
+            try {
+                const userDocRef = doc(db, 'usuarios', user.uid); // Cambia 'usuarios' al nombre correcto de tu colección
+                const userDoc = await getDoc(userDocRef);
+
+                if (userDoc.exists() && userDoc.data().username === username) {
+                    await deleteDoc(userDocRef);
+                    await deleteUser(user);
+
+                    deleteStatus.textContent = 'Cuenta eliminada con éxito.';
+                    deleteStatus.classList.remove('text-danger');
+                    deleteStatus.classList.add('text-success');
+                } else {
+                    deleteStatus.textContent = 'Nombre de usuario incorrecto.';
+                }
+            } catch (error) {
+                console.error('Error al borrar la cuenta:', error);
+                deleteStatus.textContent = 'Error al intentar borrar la cuenta. Intente de nuevo más tarde.';
+            }
+        });
+    </script>
+</body>
+</html>

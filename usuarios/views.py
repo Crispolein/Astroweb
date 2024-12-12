@@ -31,7 +31,8 @@ from django.contrib.auth.forms import PasswordResetForm
 
 def home_perfiles(request):
     return render(request, "usuarios/home_perfiles.html")
-
+def user_delete(request):
+    return render(request, "usuarios/user_delete.html")
 
 def home_cuentas(request):
     return render(request, "usuarios/home_cuentas.html")

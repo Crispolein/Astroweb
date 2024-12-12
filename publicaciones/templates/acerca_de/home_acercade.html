@@ -1,10 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="noticia-container">
-  <h1 class="titulo-h1">Acerca De</h1>
+  <h1 class="titulo-h1">Políticas de Privacidad</h1>
   <hr class="titulo-hr" />
   <div class="noticia-info">
-    {% for publicacion in my_about %} {{ publicacion.cuerpo|safe }} {% endfor %}
+    <p>
+      En nuestro sitio web y aplicación móvil, valoramos tu privacidad y estamos comprometidos con su protección. Recopilamos información como datos de contacto (nombre, apellidos, nombre de usuario y correo electrónico) y datos de uso (interacciones y estadísticas) para mejorar la experiencia del usuario, analizar el rendimiento del sitio y enviar notificaciones relacionadas, siempre con tu consentimiento. Implementamos medidas de seguridad para salvaguardar tus datos, aunque ninguna tecnología es completamente infalible. No compartimos tu información con terceros, salvo para cumplir con la ley o proteger derechos. Actualizaremos esta política según sea necesario y notificaremos los cambios en esta página. Contáctanos en astronexoapp@gmail.com si tienes dudas.
+    </p>
   </div>
 
   {% for group in user.groups.all %} {% if group.name == "Admin" %}

@@ -6,95 +6,34 @@
 <html lang="en">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AstroNexo</title>
+  <title>NocheAustral</title>
 
   </head>
       <!-- Contenido -->
         {% if user.is_authenticated %}
       <div class="contenido-height">
         <header>
-          <h1 class="titulo-h1">Bienvenido a AstroNexo</h1>
+          <h1 class="titulo-h1">Bienvenido a NocheAustral</h1>
           <h2 class="titulo-h2">Vista de Administrador</h2>
         </header>
-        <div class="chart-container">
-          <h5>Gráfico de Noticias</h5>
-          <div>
-            <canvas id="chart_pie_noticias"></canvas>
-          </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-          const ctxPieNoticias = document.getElementById('chart_pie_noticias');
-  
-          new Chart(ctxPieNoticias, {
-            type: 'pie',
-            data: {
-              labels: {{ labels_pie_noticias|safe }},
-              datasets: [
-                {
-                  data: {{ data_pie_noticias|safe }},
-                  backgroundColor: ['rgba(212, 121, 0)', 'rgba(133, 110, 80)', 'rgba(154, 113, 59)'],
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-            },
-          });
-        </script>
         <div class="chart-container">
           <h5>Gráfico de Artículos</h5>
           <div>
             <canvas id="chart_pie_articulos"></canvas>
           </div>
         </div>
-        <script>
-          const ctxPieArticulos = document.getElementById('chart_pie_articulos');
-  
-          new Chart(ctxPieArticulos, {
-            type: 'pie',
-            data: {
-              labels: {{ labels_pie_articulos|safe }},
-              datasets: [
-                {
-                  data: {{ data_pie_articulos|safe }},
-                  backgroundColor: ['rgba(212, 121, 0)', 'rgba(133, 110, 80)', 'rgba(154, 113, 59)'],
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-            },
-          });
-        </script>
-                <div class="chart-container">
-                  <h5>Gráfico de Galería</h5>
-                  <div>
-                    <canvas id="chart_pie_galerias"></canvas>
-                  </div>
-                </div>
-                <script>
-                  const ctxPieGalerias = document.getElementById('chart_pie_galerias');
-          
-                  new Chart(ctxPieGalerias, {
-                    type: 'pie',
-                    data: {
-                      labels: {{ labels_pie_galerias|safe }},
-                      datasets: [
-                        {
-                          data: {{ data_pie_galerias|safe }},
-                          backgroundColor: ['rgba(212, 121, 0)', 'rgba(133, 110, 80)', 'rgba(154, 113, 59)'],
-                        },
-                      ],
-                    },
-                    options: {
-                      responsive: true,
-                      maintainAspectRatio: false,
-                    },
-                  });
-                </script>
+        <div class="chart-container">
+          <h5>Gráfico de Recursos</h5>
+          <div>
+            <canvas id="chart_pie_noticias"></canvas>
+          </div>
+        </div>
+        <div class="chart-container">
+          <h5>Gráfico de Galería</h5>
+          <div>
+            <canvas id="chart_pie_galerias"></canvas>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -102,21 +41,21 @@
   <header>
     <div class="text-center content-container">
       <h1 class="titulo-h1-home">
-        Bienvenido a <span class="titulo-h1 titulo-h1-bold">AstroNexo</span>
+        Bienvenido a <span class="titulo-h1-x titulo-h1-bold">NocheAustral</span>
       </h1>
       <p class="titulo-h2-home">
         Lugar de aficionados de la
         <span class="emphasized-text">astronomía</span>
       </p>
       <p class="home-presentacion">
-        <span class="emphasized-text">AstroNexo</span> es tu ventana al
+        <span class="emphasized-text">NocheAustral</span> es tu ventana al
         universo. Sumérgete en la
         majestuosidad del universo a través
         de nuestra plataforma, donde te ofrecemos una colección excepcional de
         imágenes astronómicas en alta
         resolución. Descubre la belleza y el detalle de los astros que pueblan
         el vasto firmamento. ¡Prepárate para explorar el espacio como nunca
-        antes en <span class="emphasized-text">AstroNexo</span>!
+        antes en <span class="emphasized-text">NocheAustral</span>!
       </p>
       <div class="card-container">
         <div class="card-titulo">
@@ -134,7 +73,7 @@
             <div class="card">
                   <img src="{% static 'assets/img/2.jpg' %}" alt="HomeNoticia" />
                   <a href="{% url 'home_noticias' %}" class="overlay">
-                      <h1>Descubre las Últimas Noticias del Universo</h1>
+                      <h1 class="truncate-text-title">Descubre las Últimas Noticias del Universo</h1>
                       <p class="truncate-text">Explora un vasto cosmos de conocimiento con las noticias astronómicas más emocionantes.</p>
                   </a>    
             </div>
@@ -144,7 +83,7 @@
             <div class="card">
                 <img src="{% static 'assets/img/3.jpg' %}" alt="HomeArticulos" />
                 <a href="{% url 'home_articulos' %}" class="overlay">
-                    <h1>Artículos Relacionados a la Astronomía</h1>
+                    <h1 class="truncate-text-title">Artículos Relacionados a la Astronomía</h1>
                     <p class="truncate-text">Nuestros apasionantes artículos te guiarán a través de los misterios del espacio y la astronomía.</p>
                 </a>
             </div>
@@ -153,5 +92,146 @@
     </div>
   </header>
 
-  {% endif %} {%endblock%}
+  {% endif %} 
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const darkModeColors = ['rgba(212, 121, 0)', 'rgba(133, 110, 80)', 'rgba(154, 113, 59)'];
+    const lightModeColors = ['#0692D3', '#065FD3', 'rgba(255, 206, 86)'];
+
+    // Variables globales para los gráficos
+    let chartPieNoticias, chartPieArticulos, chartPieGalerias;
+
+    // Función para obtener los colores según el tema
+    function getColors() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark-mode') {
+        return darkModeColors;
+      } else {
+        return lightModeColors;
+      }
+    }
+
+    // Verificar si los elementos del canvas existen antes de crear los gráficos
+    const ctxPieNoticias = document.getElementById('chart_pie_noticias');
+    if (ctxPieNoticias) {
+      chartPieNoticias = new Chart(ctxPieNoticias, {
+        type: 'pie',
+        data: {
+          labels: {{ labels_pie_noticias|safe }},
+          datasets: [
+            {
+              data: {{ data_pie_noticias|safe }},
+              backgroundColor: getColors(),
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      });
+    }
+
+    const ctxPieArticulos = document.getElementById('chart_pie_articulos');
+    if (ctxPieArticulos) {
+      chartPieArticulos = new Chart(ctxPieArticulos, {
+        type: 'pie',
+        data: {
+          labels: {{ labels_pie_articulos|safe }},
+          datasets: [
+            {
+              data: {{ data_pie_articulos|safe }},
+              backgroundColor: getColors(),
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      });
+    }
+
+    const ctxPieGalerias = document.getElementById('chart_pie_galerias');
+    if (ctxPieGalerias) {
+      chartPieGalerias = new Chart(ctxPieGalerias, {
+        type: 'pie',
+        data: {
+          labels: {{ labels_pie_galerias|safe }},
+          datasets: [
+            {
+              data: {{ data_pie_galerias|safe }},
+              backgroundColor: getColors(),
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
+      });
+    }
+
+    // Función para actualizar los colores de los gráficos
+    function updateChartColors(colors) {
+      if (chartPieNoticias) {
+        chartPieNoticias.data.datasets[0].backgroundColor = colors;
+        chartPieNoticias.update();
+      }
+      if (chartPieArticulos) {
+        chartPieArticulos.data.datasets[0].backgroundColor = colors;
+        chartPieArticulos.update();
+      }
+      if (chartPieGalerias) {
+        chartPieGalerias.data.datasets[0].backgroundColor = colors;
+        chartPieGalerias.update();
+      }
+    }
+
+    // Función para verificar y aplicar el tema al cargar la página
+    function applySavedTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.body.classList.add(savedTheme);
+        updateChartColors(getColors());
+      } else {
+        document.body.classList.add('light-mode');
+        updateChartColors(lightModeColors);
+      }
+    }
+
+    // Aplicar el tema guardado al cargar la página
+    applySavedTheme();
+
+    // Obtener los botones de cambio de modo
+    const darkModeBtn = document.getElementById('dark-mode-btn');
+    const lightModeBtn = document.getElementById('light-mode-btn');
+    const lightMode2Btn = document.getElementById('light-mode2-btn');
+
+    // Función para activar el modo oscuro
+    darkModeBtn.addEventListener('click', () => {
+      setTheme('dark-mode', darkModeColors);
+    });
+
+    // Función para activar el modo claro
+    lightModeBtn.addEventListener('click', () => {
+      setTheme('light-mode', lightModeColors);
+    });
+
+    // Función para activar el modo claro 2
+    lightMode2Btn.addEventListener('click', () => {
+      setTheme('light-mode2', lightModeColors);
+    });
+
+    // Función para establecer el tema
+    function setTheme(theme, colors) {
+      document.body.classList.remove('dark-mode', 'light-mode', 'light-mode2');
+      document.body.classList.add(theme);
+      localStorage.setItem('theme', theme);
+      updateChartColors(colors);
+    }
+  </script>
+  {%endblock%}
 </html>

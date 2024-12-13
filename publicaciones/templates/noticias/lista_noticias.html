@@ -5,11 +5,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lista de Noticias</title>
+    <title>Lista de Recursos</title>
   </head>
   <div class="lista">
     <br />
-    <h1 class="titulo-h1">Lista de Noticias</h1>
+    <h1 class="titulo-h1">Lista de Recursos</h1>
     <hr class="titulo-hr" />
     <form class="search-form">
       {% if user.is_authenticated %}
@@ -59,15 +59,15 @@
       <div class="pagination">
         <span>
           {% if noticias.number > 1 %}
-            <a href="?page=1" class="pagination-link double-left" style="color: #FFA500;">&lt &lt</a>
+            <a href="?page=1" class="pagination-link double-left" >&lt &lt</a>
           {% else %}
-            <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&lt &lt</a>
+            <a class="pagination-link" style=" pointer-events: none;">&lt &lt</a>
           {% endif %}
           
           {% if noticias.has_previous %}
-            <a href="?page={{ noticias.previous_page_number }}" class="pagination-link" style="color: #FFA500;">&lt</a>
+            <a href="?page={{ noticias.previous_page_number }}" class="pagination-link" >&lt</a>
           {% else %}
-            <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&lt</a>
+            <a class="pagination-link" style=" pointer-events: none;">&lt</a>
           {% endif %}
         </span>
     
@@ -77,19 +77,19 @@
     
         <span>
           {% if noticias.has_next %}
-            <a href="?page={{ noticias.next_page_number }}" class="pagination-link" style="color: #FFA500;">&gt</a>
-            <a href="?page={{ noticias.paginator.num_pages }}" class="pagination-link double-right" style="color: #FFA500;">&gt &gt</a>
+            <a href="?page={{ noticias.next_page_number }}" class="pagination-link">&gt</a>
+            <a href="?page={{ noticias.paginator.num_pages }}" class="pagination-link double-right" style="">&gt &gt</a>
           {% else %}
-            <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&gt</a>
-            <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&gt &gt</a>
+            <a class="pagination-link" style=" pointer-events: none;">&gt</a>
+            <a class="pagination-link" style="F; pointer-events: none;">&gt &gt</a>
           {% endif %}
         </span>
       </div>
     </div>
 
-    <a href="{% url 'crear_noticia' %}">Crear Noticia</a>
+    <a href="{% url 'crear_noticia' %}">Crear Recurso</a>
     <p></p>
-    <a href="{% url 'home_noticias' %}">Home Noticias</a>
+    <a href="{% url 'home_noticias' %}">Home Recursos</a>
   </div>
   <div id="confirmarBorradoModal2" class="modal2">
     <div class="modal-content2">

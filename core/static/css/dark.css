@@ -1,0 +1,391 @@
+:root {
+  /* Modo Oscuro */
+  --color-white: white;
+  --color-black: black;
+  --color-orange: #D47900;
+  --color-orange-hover: #FF9200;
+  --color-title: #FFA500;
+  --color-overlay: #D47900;
+  --background-dark: #101010;
+  --background-darker: #1C1C1C;
+  --background-overlay: rgba(28, 28, 28, 0.9);
+  --background-footer: rgb(28, 28, 28);
+  --background-button: #61441D;
+  --background-button-hover: #D47900;
+  /* esta modal es de los comentarios de las publicaciones / o la alerta de borrar una publicación */
+  --background-modal: rgba(0, 0, 0, 0.7);
+  --background-modal-content: #101010;
+  --background-comentarios: black;
+  /* Modo Claro */
+  --background-light: #E0E0E0;
+  --background-lighter: #F1F1F1;
+  --background-white: #FFFFFF;
+  --color-blue: #0692D3;
+  --color-blue-hover: #065FD3;
+  --color-gray: #9A9A9A;
+}
+
+/* Modo Oscuro ********************************************************************************************************************/
+.dark-mode .img {
+  background: var(--background-dark);
+}
+.dark-mode body {
+  color: var(--color-white);
+}
+.dark-mode .titulo {
+  color: var(--color-white);
+}
+.dark-mode .nav-main {
+  background-color: var(--background-darker);
+  border-bottom: 1px solid var(--background-dark);
+}
+.dark-mode .nav-orange {
+  color: var(--color-orange);
+}
+.dark-mode .nav-main .nav-menu-mid li a:hover {
+  border-bottom: 2px solid var(--color-orange-hover);
+}
+.dark-mode .nav-login {
+  color: var(--color-white);
+}
+.dark-mode .nav-login:hover {
+  color: var(--color-orange-hover);
+}
+.dark-mode .nav-secondary {
+  background-color: var(--background-darker);
+  border-bottom: 1px solid var(--background-dark);
+}
+.dark-mode .nav-white {
+  color: var(--color-white);
+}
+.dark-mode .nav-white2 {
+  color: var(--color-white);
+}
+.dark-mode .container2 {
+  background: var(--background-overlay);
+}
+.dark-mode .titulo-h1 {
+  color: var(--color-orange-hover);
+}
+.dark-mode .titulo-h1-x {
+  color: var(--color-orange-hover);
+}
+.dark-mode .titulo-hr {
+  border-top: 4px solid var(--color-orange);
+}
+.dark-mode .search-select {
+  background-color: var(--background-darker);
+  border: 1px solid var(--color-orange);
+  color: var(--color-white);
+}
+.dark-mode .search-input {
+  background-color: var(--background-darker);
+  border: 1px solid var(--color-orange);
+  color: var(--color-white);
+}
+.dark-mode .search-button {
+  background-color: var(--color-orange) !important;
+  color: var(--color-white) !important;
+}
+.dark-mode .search-button:hover{
+  background-color: var(--color-orange-hover) !important;
+  color: var(--color-white) !important;
+}
+.dark-mode .photo_overlay em {
+  color: var(--color-overlay);
+}
+.dark-mode .photo_overlay p {
+  color: var(--color-overlay);
+}
+.dark-mode .noticia h2 {
+  color: var(--color-overlay);
+}
+.dark-mode .galeria .noticia:hover h2 {
+  color: var(--color-orange-hover);
+}
+.dark-mode .noticia p {
+  color: var(--color-white);
+}
+.dark-mode .galeria .noticia .estado {
+  color: var(--color-orange);
+}
+.dark-mode .pagination-text {
+  color: var(--color-white);
+}
+.dark-mode .pagination-link {
+  color: var(--color-orange);
+}
+.dark-mode .footer {
+  background-color: var(--background-footer);
+}
+.dark-mode a {
+  color: var(--color-orange);
+}
+.dark-mode a:hover {
+  color: var(--color-orange-hover);
+}
+.dark-mode .footer-social a {
+  color: var(--color-orange);
+}
+.dark-mode .footer-social a:hover {
+  color: var(--color-orange-hover);
+}
+.dark-mode .info-divider {
+  border-left: 1px solid var(--color-white);
+  border-color: var(--color-orange);
+}
+.dark-mode .footer-info h5 {
+  color: var(--color-white);
+}
+.dark-mode .footer-info p {
+  color: var(--color-white);
+}
+.dark-mode .galeria-title {
+  color: var(--color-title);
+}
+.dark-mode .autor-name {
+  color: var(--color-white);
+}
+.dark-mode .autor-date {
+  color: var(--color-white);
+}
+.dark-mode button[type="submit"] {
+  background-color: var(--background-button);
+  color: var(--color-white);
+}
+.dark-mode button[type="submit"]:hover {
+  background-color: var(--background-button-hover);
+}
+.dark-mode .comentarios-header {
+  background-color: var(--background-comentarios);
+}
+.dark-mode .titulo-comentarios {
+  background-color: var(--background-comentarios);
+  color: var(--color-orange);
+}
+.dark-mode .comentarios {
+  background-color: var(--background-darker);
+  color: var(--color-white);
+}
+.dark-mode .noticia-title {
+  color: var(--color-title);
+}
+.dark-mode .noticia-subtitle {
+  color: var(--color-white);
+}
+.dark-mode .autor-line {
+  background-color: var(--color-white);
+}
+.dark-mode .noticia-info {
+  color: var(--color-white);
+}
+.dark-mode .modal {
+  background-color: var(--background-modal);
+}
+.dark-mode .modal-content {
+  background-color: var(--background-modal-content);
+  box-shadow: var(--color-black);
+  color: var(--color-white);
+}
+.dark-mode .close {
+  color: var(--background-darker);
+}
+.dark-mode .comentario-form input[type="text"],
+.dark-mode .comentario-form input[type="email"],
+.dark-mode .comentario-form textarea {
+  background-color: var(--background-darker);
+  border: 1px solid var(--color-orange);
+  color: var(--color-white);
+}
+.dark-mode .comentario-form button {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+}
+.dark-mode .comentario strong {
+  color: var(--color-orange);
+}
+.light-mode .content-container {
+  color: var(--color-white);
+}
+.dark-mode .card-titulo h3 {
+  border-left: 2px solid var(--color-orange);
+}
+.dark-mode .card .overlay h1.truncate-text-title {
+  color: var(--color-orange);
+}
+.dark-mode .login-2 {
+  color: var(--color-white);
+  border: 1px solid var(--color-orange);
+  background-color: var(--background-darker);
+}
+.dark-mode hr {
+  color: var(--color-orange);
+}
+.dark-mode .button-login {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+}
+.dark-mode .titulo-h2 {
+  color: var(--color-white);
+}
+.dark-mode .login-1 {
+  color: var(--color-white);
+}
+.dark-mode .nav-secondary a:hover {
+  color: var(--color-orange);
+}
+.dark-mode .dropdown-content a {
+  color: var(--color-white);
+}
+.dark-mode .dropdown-content {
+  background-color: var(--background-darker);
+}
+.dark-mode .dropdown-content2 a {
+  color: var(--color-white);
+}
+.dark-mode .dropdown-content2 {
+  background-color: var(--background-darker);
+}
+.dark-mode .tabla-noticias th {
+  background-color: var(--background-dark);
+  color: var(--color-white);
+}
+.dark-mode .tabla-noticias td {
+  border: 1px solid var(--background-dark);
+  color: var(--color-white);
+}
+.dark-mode .tabla-noticias a {
+  color: var(--color-orange);
+}
+.dark-mode .tabla-noticias a:hover {
+  color: var(--color-orange-hover);
+}
+.dark-mode .tabla-perfil {
+  border: 1px solid var(--background-comentarios);
+  color: var(--color-white);
+}
+.dark-mode .tabla-perfil th,
+.dark-mode .tabla-perfil td {
+  border: 1px solid var(--background-comentarios);
+  color: var(--color-white);
+}
+.dark-mode .tabla-perfil th {
+  background-color: var(--background-dark);
+}
+.dark-mode .link-editar {
+  background-color: var(--background-button);
+  color: var(--color-white);
+}
+.dark-mode .link-editar:hover {
+  background-color: var(--background-button-hover);
+  color: var(--color-white);
+}
+.dark-mode .nav-menu-right2 .nav-dropdown .dropdown-content a:hover {
+  color: var(--color-orange);
+}
+.dark-mode .nav-menu-right2 .nav-dropdown .dropdown-content2 a:hover {
+  color: var(--color-orange);
+}
+.dark-mode .nav-menu-right3 .nav-dropdown .dropdown-content a:hover {
+  color: var(--color-orange);
+}
+.dark-mode .nav-menu-right3 .nav-dropdown .dropdown-content2 a:hover {
+  color: var(--color-orange);
+}
+.dark-mode #closeButtonMarcador:hover {
+  background-color: var(--background-button-hover);
+}
+.dark-mode #resetButtonMarcador:hover {
+  background-color: var(--background-button-hover);
+}
+.dark-mode #closeButton:hover {
+  background-color: var(--background-button-hover);
+}
+.dark-mode #resetButton:hover {
+  background-color: var(--background-button-hover);
+}
+.dark-mode .form-field input[type="text"] {
+  background-color: var(--background-darker);
+  border: 1px solid var(--color-orange);
+  color: var(--color-white);
+}
+.dark-mode .form-field textarea {
+  background-color: var(--background-darker);
+  border: 1px solid var(--color-orange);
+  color: var(--color-white);
+}
+.dark-mode .uploaded-image-name {
+  background-color: var(--background-darker);
+  border: 1px solid var(--color-orange);
+  color: var(--color-white);
+}
+.dark-mode .custom-file-button {
+  background-color: var(--background-button);
+  color: var(--color-white);
+}
+.dark-mode select#id_estado {
+  background-color: var(--background-button);
+  color: var(--color-white);
+}
+.dark-mode .form-container label {
+  color: var(--color-white);
+}
+.dark-mode .modal-content2 {
+  background-color: var(--background-modal-content);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  color: var(--color-white);
+}
+.dark-mode #siBorrar {
+  background-color: var(--background-button);
+  color: var(--color-white);
+}
+.dark-mode #siBorrar:hover {
+  background-color: var(--background-button-hover);
+}
+.dark-mode #noBorrar {
+  background-color: var(--background-button);
+  color: var(--color-white);
+}
+.dark-mode #noBorrar:hover {
+  background-color: var(--background-button-hover);
+}
+@media (max-width: 810px) {
+  .dark-mode .nav-menu-mid {
+    background: var(--background-darker);
+    border: var(--background-dark);
+  }
+}
+.dark-mode p {
+  color: var(--color-white);
+}
+.dark-mode h1 {
+  color: var(--color-white);
+}
+.dark-mode h3 {
+  color: var(--color-white);
+}
+.dark-mode .menu-btn i {
+  color: var(--color-white);
+}
+.dark-mode .card{
+  border: var(--background-dark);
+}
+.dark-mode .overlay p{
+  color: var(--color-white);
+}
+.dark-mode .photo_container h2 {
+  color: var(--color-white);
+}
+.dark-mode .modal-footer button{
+  background-color: var(--color-orange);
+  border: var(--background-darker);
+}
+.dark-mode .modal-footer button:hover{
+  background-color: var(--color-orange-hover);
+}
+.dark-mode .btn-close {
+  background-color:var(--color-white);
+}
+.dark-mode .btn-close{
+  background-color: var(--color-orange);
+}

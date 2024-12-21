@@ -60,15 +60,15 @@
       <div class="pagination">
         <span>
           {% if galerias.number > 1 %}
-            <a href="?page=1" class="pagination-link double-left" style="color: #FFA500;">&lt &lt</a>
+            <a href="?page=1" class="pagination-link double-left">&lt &lt</a>
           {% else %}
-            <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&lt &lt</a>
+            <a class="pagination-link"  pointer-events: none;">&lt &lt</a>
           {% endif %}
           
           {% if galerias.has_previous %}
-            <a href="?page={{ galerias.previous_page_number }}" class="pagination-link" style="color: #FFA500;">&lt</a>
+            <a href="?page={{ galerias.previous_page_number }}" class="pagination-link" >&lt</a>
           {% else %}
-            <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&lt</a>
+            <a class="pagination-link"  pointer-events: none;">&lt</a>
           {% endif %}
         </span>
     
@@ -78,11 +78,11 @@
     
         <span>
           {% if galerias.has_next %}
-            <a href="?page={{ galerias.next_page_number }}" class="pagination-link" style="color: #FFA500;">&gt</a>
-            <a href="?page={{ galerias.paginator.num_pages }}" class="pagination-link double-right" style="color: #FFA500;">&gt &gt</a>
+            <a href="?page={{ galerias.next_page_number }}" class="pagination-link">&gt</a>
+            <a href="?page={{ galerias.paginator.num_pages }}" class="pagination-link double-right" >&gt &gt</a>
           {% else %}
-            <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&gt</a>
-            <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&gt &gt</a>
+            <a class="pagination-link" style=" pointer-events: none;">&gt</a>
+            <a class="pagination-link" style=" pointer-events: none;">&gt &gt</a>
           {% endif %}
         </span>
       </div>

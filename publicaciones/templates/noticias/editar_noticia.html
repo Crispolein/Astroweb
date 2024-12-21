@@ -16,7 +16,7 @@
   </head>
   <body>
     <div class="crear-noticia-container">
-      <h1 class="titulo-h1">Editar Noticia</h1>
+      <h1 class="titulo-h1">Editar Recurso</h1>
       <hr class="titulo-hr" />
       <form method="post" enctype="multipart/form-data" class="form-container">
         {% csrf_token %}
@@ -70,8 +70,8 @@
         <button type="submit">Guardar Cambios</button>
       </form>
 
-      <a href="{% url 'home_noticias' %}">Home Noticias</a> |
-      <a href="{% url 'lista_noticias' %}">Lista Noticias</a>
+      <a href="{% url 'home_noticias' %}">Home Recursos</a> |
+      <a href="{% url 'lista_noticias' %}">Lista Recursos</a>
     </div>
 
     <script>

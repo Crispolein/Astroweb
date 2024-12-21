@@ -1,11 +1,11 @@
 {%extends 'base.html'%} {%block content%}
 <head>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <title>Galería de Noticias</title>
+  <title>Galería de Recursos</title>
 </head>
 
 <br />
-<h1 class="titulo-h1">Noticias</h1>
+<h1 class="titulo-h1">Recursos</h1>
 <hr class="titulo-hr" />
 
 <!-- ... -->
@@ -41,10 +41,9 @@
       <h2>{{ noticia.titulo }}</h2>
       <p class="bajada">{{ noticia.bajada }}</p>
       <p>{{ noticia.fecha_creacion }}</p>
-      <p style="color: white; font-style: italic;">{{ noticia.editor.first_name }} {{ noticia.editor.last_name }}</p>
-
+      {% comment %} <p style="color: white; font-style: italic;">{{ noticia.editor.first_name }} {{ noticia.editor.last_name }}</p> {% endcomment %}
       {% if user.is_authenticated %}
-      <p style="color: #d47900">Estado: {{ noticia.estado }}</p>
+      <p class="estado">Estado: {{ noticia.estado }}</p>
       {% endif %}
     </div>
   </a>
@@ -56,15 +55,15 @@
     <div class="pagination">
       <span>
         {% if noticias.number > 1 %}
-          <a href="?page=1" class="pagination-link double-left" style="color: #FFA500;">&lt &lt</a>
+          <a href="?page=1" class="pagination-link double-left" >&lt &lt</a>
         {% else %}
-          <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&lt &lt</a>
+          <a class="pagination-link" style=" pointer-events: none;">&lt &lt</a>
         {% endif %}
         
         {% if noticias.has_previous %}
-          <a href="?page={{ noticias.previous_page_number }}" class="pagination-link" style="color: #FFA500;">&lt</a>
+          <a href="?page={{ noticias.previous_page_number }}" class="pagination-link" >&lt</a>
         {% else %}
-          <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&lt</a>
+          <a class="pagination-link" style=" pointer-events: none;">&lt</a>
         {% endif %}
       </span>
   
@@ -74,11 +73,11 @@
   
       <span>
         {% if noticias.has_next %}
-          <a href="?page={{ noticias.next_page_number }}" class="pagination-link" style="color: #FFA500;">&gt</a>
-          <a href="?page={{ noticias.paginator.num_pages }}" class="pagination-link double-right" style="color: #FFA500;">&gt &gt</a>
+          <a href="?page={{ noticias.next_page_number }}" class="pagination-link" >&gt</a>
+          <a href="?page={{ noticias.paginator.num_pages }}" class="pagination-link double-right" >&gt &gt</a>
         {% else %}
-          <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&gt</a>
-          <a class="pagination-link" style="color: #FFFFFF; pointer-events: none;">&gt &gt</a>
+          <a class="pagination-link" style=" pointer-events: none;">&gt</a>
+          <a class="pagination-link" style=" pointer-events: none;">&gt &gt</a>
         {% endif %}
       </span>
     </div>

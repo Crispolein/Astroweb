@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AstroNexo</title>
+  <title>NocheAustral</title>
   <link rel="icon" href="assets/img/AstroNexo2.png">
   <link
     rel="stylesheet"
@@ -11,6 +11,9 @@
   />
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/dark.css' %}" id="dark-theme" disabled>
+  <link rel="stylesheet" href="{% static 'css/light.css' %}" id="light-theme" disabled>
+  <link rel="stylesheet" href="{% static 'css/light2.css' %}" />
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
@@ -19,6 +22,25 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,300&display=swap"
     rel="stylesheet"
   />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.classList.add(savedTheme);
+        if (savedTheme === 'dark-mode') {
+          document.getElementById('dark-theme').disabled = false;
+        } else if (savedTheme === 'light-mode') {
+          document.getElementById('light-theme').disabled = false;
+        }
+      } else {
+        document.documentElement.classList.add('light-mode');
+        document.getElementById('light-theme').disabled = false;
+      }
+    })()
+    function recargarPagina() {
+      location.reload(); // Recarga la página
+    };
+  </script>
 </head>
 
 <!-- NavBar -->
@@ -38,8 +60,8 @@
                     <img src="{% static 'assets/img/AstroNexo2.png' %}" alt="AstroWEB LOGO" class="nav-brand" />
                   </a>
                 </div>
-                <a style="text-decoration: none; color: white" href="{% url 'home' %}">
-                  <span>AstroNexo</span>
+                <a href="{% url 'home' %}">
+                  <span class="titulo">NocheAustral</span>
                 </a>
               </li>
             </ul>
@@ -52,13 +74,13 @@
                 >
               </li>
               <li>
-                <a class="nav-orange" href="{% url 'home_noticias' %}"
-                  >Noticias</a
+                <a class="nav-orange" href="{% url 'home_articulos' %}"
+                  >Artículos</a
                 >
               </li>
               <li>
-                <a class="nav-orange" href="{% url 'home_articulos' %}"
-                  >Artículos</a
+                <a class="nav-orange" href="{% url 'home_noticias' %}"
+                  >Recursos</a
                 >
               </li>
               <li>
@@ -70,17 +92,56 @@
           </div>
           <div class="col-md-4">
             {% if user.is_authenticated %}
-            <ul class="nav-menu-right">
-              <li>
-                <a class="nav-login" href="{% url 'logout' %}">Cerrar sesión</a>
+            <ul class="nav-menu-right2 nav-menu-mid-admin2">
+              <li class="nav-dropdown">
+                <!-- Icono que representa el modo actual (sol para modo claro, luna para modo oscuro) -->
+                <a class="nav-white2 padding5" id="theme-toggle-btn" onclick="toggleMode()">
+                  <i class="bi bi-sun" id="theme-icon"></i>
+                </a>
+                <ul class="dropdown-content2">
+                  <li><a href="#" id="dark-mode-btn">
+                    <i class="bi bi-moon"></i> Dark
+                  </a></li>
+                  <li><a href="#" id="light-mode-btn">
+                    <i class="bi bi-sun"></i> light
+                  </a></li>
+                  <li><a href="#" id="light-mode2-btn" style="display: none">
+                    <i class="bi bi-sun"></i> light 2
+                  </a></li>
+                </ul>
               </li>
             </ul>
             {% else %}
-            <ul class="nav-menu-right">
-              <li>
+            <ul class="nav-menu-right3 nav-menu-mid-admin2">
+              <li class="nav-dropdown">
+                <!-- Icono que representa el modo actual (sol para modo claro, luna para modo oscuro) -->
+                <a class="nav-white2 padding5" id="theme-toggle-btn" onclick="toggleMode()">
+                  <i class="bi bi-sun" id="theme-icon"></i>
+                </a>
+                <ul class="dropdown-content2">
+                  <li><a href="#" id="dark-mode-btn">
+                    <i class="bi bi-moon"></i> Dark
+                  </a></li>
+                  <li><a href="#" id="light-mode-btn">
+                    <i class="bi bi-sun"></i> light
+                  </a></li>
+                  <li><a href="#" id="light-mode2-btn" style="display: none">
+                    <i class="bi bi-sun"></i> light 2
+                  </a></li>
+                </ul>
               </li>
             </ul>
-            {% endif %}
+              {% endif %}
+            {% if user.is_authenticated %}
+          <ul class="nav-menu-right">
+            <li>
+              <a class="nav-login" href="{% url 'logout' %}">Cerrar sesión</a>
+            </li>
+          </ul>
+            {% else %}
+              <ul>
+              </ul>
+              {% endif %}
           </div>
         </div>
       </div>
@@ -124,17 +185,6 @@
             </li>
             <li class="nav-dropdown">
               <a class="nav-white"
-                >Gestionar Noticias <i class="bi bi-chevron-down"></i
-              ></a>
-              <ul class="dropdown-content">
-                <li>
-                  <a href="{% url 'lista_noticias' %}">Lista de Noticias</a>
-                </li>
-                <li><a href="{% url 'crear_noticia' %}">Crear Noticia</a></li>
-              </ul>
-            </li>
-            <li class="nav-dropdown">
-              <a class="nav-white"
                 >Gestionar Artículos <i class="bi bi-chevron-down"></i
               ></a>
               <ul class="dropdown-content">
@@ -144,6 +194,17 @@
                 <li>
                   <a href="{% url 'crear_articulo' %}">Crear Artículos</a>
                 </li>
+              </ul>
+            </li>
+            <li class="nav-dropdown">
+              <a class="nav-white"
+                >Gestionar Recursos <i class="bi bi-chevron-down"></i
+              ></a>
+              <ul class="dropdown-content">
+                <li>
+                  <a href="{% url 'lista_noticias' %}">Lista de Recursos</a>
+                </li>
+                <li><a href="{% url 'crear_noticia' %}">Crear Recursos</a></li>
               </ul>
             </li>
             <li class="nav-dropdown">
@@ -197,53 +258,126 @@
 
     <!-- Footer -->
     <div class="footer">
-      <div class="footer-content">
-        <a href="https://www.uautonoma.cl/">
-          <img
-              src="{% static 'assets/img/Universidad-autonoma-de-chile.png' %}"
-              alt="Universidad Autonoma"
-              class="logouautonoma"
-          />
-        </a>
-        <div class="footer-info info-divider">
-          <h3>Información de Contacto:</h3>
-          <p>comunicaciones@uautonoma.cl</p>
-          <p>223 03 6000</p>
-          <p>Avenida Pedro de Valdivia 425, Providencia</p>
-        </div>
-        <div>
-          <ul class="footer-social">
-            <li>
-              <a class="footer-apps" href="https://www.instagram.com/uautonomadechile/">
-                <i class="bi bi-instagram"></i>
+      <div class="footer-inner">
+          <div class="footer-content">
+              <a href="https://www.uautonoma.cl/">
+                  <img src="{% static 'assets/img/UA.png' %}" alt="Universidad Autonoma" class="logouautonoma" />
               </a>
-            </li>
-            <li>
-              <a class="footer-apps" href="https://www.linkedin.com/school/universidad-aut%C3%B3noma-de-chile/">
-                <i class="bi bi-linkedin"></i>
+              <a href="https://www.uautonoma.cl/centro-de-comunicacion-de-las-ciencias/">
+                  <img id="logo-cccb" src="{% static 'assets/img/CCCB.png' %}" alt="Centro de Comunicación de las Ciencias" class="logouautonoma3"/>
               </a>
-            </li>
-            <li>
-              <a class="footer-apps" href="https://web.facebook.com/uautonomadechile?_rdc=1&_rdr">
-                <i class="bi bi-facebook"></i>
+              <a href="https://www.uautonoma.cl/catedra-unesco-de-educacion-cientifica-para-la-ciudadania/">
+                  <img src="{% static 'assets/img/unesco.png' %}" alt="Universidad Autonoma" class="logouautonoma" />
               </a>
-            </li>          
-            <li>
-              <a class="footer-apps" href="https://twitter.com/autonomadechile">
-                <i class="bi bi-twitter"></i>
+              <a href="https://https://anid.cl//Agencia Nacional de Investigacion y Desarrollo/">
+                  <img src="{% static 'assets/img/ANID.png' %}" alt="Centro de Comunicación de las Ciencias" class="logouautonoma logouautonoma2" />
               </a>
-            </li>
-            <li>
-              <a class="footer-apps" href="https://www.youtube.com/channel/UCKH5TRayoUI4hxBAC8-hfbQ">
-                <i class="bi bi-youtube"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
+              <div class="footer-info info-divider">
+                  <h5>Contacto:</h5>
+                  <p>matias.vidal@uautonoma.cl</p>
+                  <!--  <p>223 03 6000</p> -->
+                  <!--    <p>Avenida Pedro de Valdivia 425, Providencia</p> -->
+                  <ul class="footer-social">
+                      <li>
+                          <a class="footer-apps" href="https://www.instagram.com/uautonomadechile/">
+                              <i class="bi bi-instagram"></i>
+                          </a>
+                      </li>
+                      <li>
+                          <a class="footer-apps" href="https://www.linkedin.com/school/universidad-aut%C3%B3noma-de-chile/">
+                              <i class="bi bi-linkedin"></i>
+                          </a>
+                      </li>
+                      <li>
+                          <a class="footer-apps" href="https://web.facebook.com/uautonomadechile?_rdc=1&_rdr">
+                              <i class="bi bi-facebook"></i>
+                          </a>
+                      </li>
+                      <li>
+                          <a class="footer-apps" href="https://twitter.com/autonomadechile">
+                              <i class="bi bi-twitter"></i>
+                          </a>
+                      </li>
+                      <li>
+                          <a class="footer-apps" href="https://www.youtube.com/channel/UCKH5TRayoUI4hxBAC8-hfbQ">
+                              <i class="bi bi-youtube"></i>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
       </div>
-    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const logoCCCB = document.getElementById('logo-cccb');
+      const themeIcon = document.getElementById('theme-icon');
+  
+      // Función para establecer el logo y el icono según el tema guardado
+      const setThemeBasedOnStorage = () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+          // Modo oscuro
+          logoCCCB.src = '{% static "assets/img/CCCB.png" %}';
+          themeIcon.classList.remove('bi-sun');
+          themeIcon.classList.add('bi-moon');
+        } else {
+          // Modo claro (por defecto si no hay tema guardado)
+          logoCCCB.src = '{% static "assets/img/CCC3.png" %}';
+          themeIcon.classList.remove('bi-moon');
+          themeIcon.classList.add('bi-sun');
+        }
+      };
+  
+      // Llamar a la función al cargar la página
+      setThemeBasedOnStorage();
+  
+      // Función para alternar entre el modo claro y oscuro
+      const toggleMode = () => {
+        const currentMode = localStorage.getItem('theme');
+        if (currentMode === 'dark') {
+          // Cambiar a modo claro
+          localStorage.setItem('theme', 'light');
+          logoCCCB.src = '{% static "assets/img/CCC3.png" %}';
+          themeIcon.classList.remove('bi-moon');
+          themeIcon.classList.add('bi-sun');
+        } else {
+          // Cambiar a modo oscuro
+          localStorage.setItem('theme', 'dark');
+          logoCCCB.src = '{% static "assets/img/CCCB.png" %}';
+          themeIcon.classList.remove('bi-sun');
+          themeIcon.classList.add('bi-moon');
+        }
+      };
+  
+      // Función para activar el modo oscuro desde el menú
+      document.getElementById('dark-mode-btn').addEventListener('click', () => {
+        localStorage.setItem('theme', 'dark');
+        logoCCCB.src = '{% static "assets/img/CCCB.png" %}';
+        themeIcon.classList.remove('bi-sun');
+        themeIcon.classList.add('bi-moon');
+      });
+  
+      // Función para activar el modo claro desde el menú
+      document.getElementById('light-mode-btn').addEventListener('click', () => {
+        localStorage.setItem('theme', 'light');
+        logoCCCB.src = '{% static "assets/img/CCC3.png" %}';
+        themeIcon.classList.remove('bi-moon');
+        themeIcon.classList.add('bi-sun');
+      });
+  
+      // Función para activar el modo claro 2 desde el menú
+      document.getElementById('light-mode2-btn').addEventListener('click', () => {
+        localStorage.setItem('theme', 'light');
+        logoCCCB.src = '{% static "assets/img/CCC3.png" %}';
+        themeIcon.classList.remove('bi-moon');
+        themeIcon.classList.add('bi-sun');
+      });
+    });
+  </script>
   </div>
   <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/tema.js' %}"></script>
   <script src="https://unpkg.com/panzoom@4.0.0/dist/panzoom.min.js"></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

@@ -32,3 +32,6 @@ handlers:
   # Ruta para manejar todas las demás rutas con Django
   - url: /.*  # Esto maneja todas las rutas dinámicas de Django
     script: auto
+    
+error_handlers:
+  - file: 404.html

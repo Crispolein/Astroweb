@@ -384,3 +384,8 @@
 .light-mode2 .btn-close:hover{
   background-color: var(--color-blue);
 }
+@media (max-width: 810px) {
+  .light-mode2 .info-divider {
+    border-left: none;
+  }
+}

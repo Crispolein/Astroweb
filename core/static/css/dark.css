@@ -17,12 +17,12 @@
   --background-modal-content: #101010;
   --background-comentarios: black;
   /* Modo Claro */
-  --background-light: #E0E0E0;
+  /* --background-light: #E0E0E0;
   --background-lighter: #F1F1F1;
   --background-white: #FFFFFF;
   --color-blue: #0692D3;
   --color-blue-hover: #065FD3;
-  --color-gray: #9A9A9A;
+  --color-gray: #9A9A9A; */
 }
 
 /* Modo Oscuro ********************************************************************************************************************/
@@ -388,4 +388,9 @@
 }
 .dark-mode .btn-close{
   background-color: var(--color-orange);
+}
+@media (max-width: 810px) {
+  .dark-mode .info-divider {
+    border-left: none;
+  }
 }

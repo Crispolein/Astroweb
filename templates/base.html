@@ -23,7 +23,7 @@
     rel="stylesheet"
   />
   <script>
-    (function() {
+    (function() { 
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) {
         document.documentElement.classList.add(savedTheme);
@@ -57,7 +57,7 @@
                 </div>
                 <div>
                   <a style="text-decoration: none; color: white" href="{% url 'home' %}">
-                    <img src="{% static 'assets/img/AstroNexo2.png' %}" alt="AstroWEB LOGO" class="nav-brand" />
+                    <img src="{% static '/assets/img/AstroNexo2.png' %}" alt="AstroWEB LOGO" class="nav-brand" />
                   </a>
                 </div>
                 <a href="{% url 'home' %}">
@@ -139,8 +139,11 @@
             </li>
           </ul>
             {% else %}
-              <ul>
-              </ul>
+            <ul class="nav-menu-right">
+              <li>
+                <a class="nav-login" href="{% url 'login' %}">Iniciar Sesion</a>
+              </li>
+            </ul>
               {% endif %}
           </div>
         </div>
@@ -263,12 +266,12 @@
               <a href="https://www.uautonoma.cl/">
                   <img src="{% static 'assets/img/UA.png' %}" alt="Universidad Autonoma" class="logouautonoma" />
               </a>
-              <a href="https://www.uautonoma.cl/centro-de-comunicacion-de-las-ciencias/">
-                  <img id="logo-cccb" src="{% static 'assets/img/CCCB.png' %}" alt="Centro de Comunicación de las Ciencias" class="logouautonoma3"/>
-              </a>
               <a href="https://www.uautonoma.cl/catedra-unesco-de-educacion-cientifica-para-la-ciudadania/">
                   <img src="{% static 'assets/img/unesco.png' %}" alt="Universidad Autonoma" class="logouautonoma" />
               </a>
+              <a href="https://www.uautonoma.cl/centro-de-comunicacion-de-las-ciencias/">
+                <img id="logo-cccb" src="{% static 'assets/img/CCCB.png' %}" alt="Centro de Comunicación de las Ciencias" class="logouautonoma3"/>
+            </a>
               <a href="https://https://anid.cl//Agencia Nacional de Investigacion y Desarrollo/">
                   <img src="{% static 'assets/img/ANID.png' %}" alt="Centro de Comunicación de las Ciencias" class="logouautonoma logouautonoma2" />
               </a>

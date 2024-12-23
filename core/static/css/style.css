@@ -395,6 +395,7 @@ a .titulo {
 }
 
 .info-divider {
+    border-left: 1px solid;
     padding-left: 10px;
     margin: auto;
 }
@@ -950,7 +951,7 @@ select#id_estado {
         margin: 0 auto;
     }
     .info-divider {
-        border: none;
+        border-left: none;
       }
 }
 @media (max-width: 677px) {
@@ -1367,12 +1368,13 @@ select#id_estado {
 }
   
 .noticia h2 {
-    font-family: 'Roboto ', sans-serif; /* Fuente */
+    /* font-family: 'Roboto ', sans-serif; */
+    font-family: 'Roboto Slab', serif;
     font-weight: 700; /* Grosor */
     font-size: 1.7rem; /* Tamaño de fuente */
     text-align: center; /* Centrar el texto */
-    text-transform: lowercase; /* Convertir todo a minúsculas */
-    font-variant: small-caps; /* Versales */
+    /* text-transform: lowercase; 
+    font-variant: small-caps;  */
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

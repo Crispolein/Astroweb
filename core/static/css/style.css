@@ -907,6 +907,17 @@ select#id_estado {
         display: inline; /* Cambia display a inline o inline-block */
     }
 
+    .nav-menu-left2{
+        position: fixed;
+        top: 12;
+        left: 50;
+    }
+    .nav-menu-left3{
+        position: fixed;
+        top: 10;
+        left: 80;
+    }
+
     /* Login */
     
     .login-1,

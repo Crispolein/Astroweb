@@ -55,12 +55,12 @@
                 <div class="menu-btn">
                   <i class="bi bi-justify"></i>
                 </div>
-                <div>
+                <div class="nav-menu-left2">
                   <a style="text-decoration: none; color: white" href="{% url 'home' %}">
                     <img src="{% static '/assets/img/AstroNexo2.png' %}" alt="AstroWEB LOGO" class="nav-brand" />
                   </a>
                 </div>
-                <a href="{% url 'home' %}">
+                <a class="nav-menu-left3" href="{% url 'home' %}" >
                   <span class="titulo">NocheAustral</span>
                 </a>
               </li>
@@ -139,7 +139,10 @@
             </li>
           </ul>
             {% else %}
-            <ul >
+            <ul class="nav-menu-right">
+              <li>
+                <a class="nav-login" href="{% url 'login' %}">Cerrar sesión</a>
+              </li>
             </ul>
               {% endif %}
           </div>
@@ -269,12 +272,12 @@
               <a href="https://www.uautonoma.cl/centro-de-comunicacion-de-las-ciencias/">
                 <img id="logo-cccb" src="{% static 'assets/img/CCCB.png' %}" alt="Centro de Comunicación de las Ciencias" class="logouautonoma3"/>
             </a>
-              <a href="https://https://anid.cl//Agencia Nacional de Investigacion y Desarrollo/">
+              <a href="https://anid.cl">
                   <img src="{% static 'assets/img/ANID.png' %}" alt="Centro de Comunicación de las Ciencias" class="logouautonoma logouautonoma2" />
               </a>
               <div class="footer-info info-divider">
                   <h5>Contacto:</h5>
-                  <p>matias.vidal@uautonoma.cl</p>
+                  <p>contacto.nocheaustral@gmail.com</p>
                   <!--  <p>223 03 6000</p> -->
                   <!--    <p>Avenida Pedro de Valdivia 425, Providencia</p> -->
                   <ul class="footer-social">
@@ -316,7 +319,7 @@
       // Función para establecer el logo y el icono según el tema guardado
       const setThemeBasedOnStorage = () => {
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
+        if (savedTheme === 'dark-mode') {
           // Modo oscuro
           logoCCCB.src = '{% static "assets/img/CCCB.png" %}';
           themeIcon.classList.remove('bi-sun');
@@ -335,15 +338,15 @@
       // Función para alternar entre el modo claro y oscuro
       const toggleMode = () => {
         const currentMode = localStorage.getItem('theme');
-        if (currentMode === 'dark') {
+        if (currentMode === 'dark-mode') {
           // Cambiar a modo claro
-          localStorage.setItem('theme', 'light');
+          localStorage.setItem('theme', 'light-mode');
           logoCCCB.src = '{% static "assets/img/CCC3.png" %}';
           themeIcon.classList.remove('bi-moon');
           themeIcon.classList.add('bi-sun');
         } else {
           // Cambiar a modo oscuro
-          localStorage.setItem('theme', 'dark');
+          localStorage.setItem('theme', 'dark-mode');
           logoCCCB.src = '{% static "assets/img/CCCB.png" %}';
           themeIcon.classList.remove('bi-sun');
           themeIcon.classList.add('bi-moon');
@@ -352,7 +355,7 @@
   
       // Función para activar el modo oscuro desde el menú
       document.getElementById('dark-mode-btn').addEventListener('click', () => {
-        localStorage.setItem('theme', 'dark');
+        localStorage.setItem('theme', 'dark-mode');
         logoCCCB.src = '{% static "assets/img/CCCB.png" %}';
         themeIcon.classList.remove('bi-sun');
         themeIcon.classList.add('bi-moon');
@@ -360,7 +363,7 @@
   
       // Función para activar el modo claro desde el menú
       document.getElementById('light-mode-btn').addEventListener('click', () => {
-        localStorage.setItem('theme', 'light');
+        localStorage.setItem('theme', 'lightlight-mode');
         logoCCCB.src = '{% static "assets/img/CCC3.png" %}';
         themeIcon.classList.remove('bi-moon');
         themeIcon.classList.add('bi-sun');
@@ -368,7 +371,7 @@
   
       // Función para activar el modo claro 2 desde el menú
       document.getElementById('light-mode2-btn').addEventListener('click', () => {
-        localStorage.setItem('theme', 'light');
+        localStorage.setItem('theme', 'light-mode');
         logoCCCB.src = '{% static "assets/img/CCC3.png" %}';
         themeIcon.classList.remove('bi-moon');
         themeIcon.classList.add('bi-sun');

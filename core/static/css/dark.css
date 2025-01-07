@@ -394,3 +394,10 @@
     border-left: none;
   }
 }
+.dark-mode .noticia-info tr {
+	color: var(--color-white);
+}
+
+.dark-mode .noticia-info caption {
+	color: var(--color-white);
+}

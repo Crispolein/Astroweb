@@ -389,3 +389,10 @@
     border-left: none;
   }
 }
+.light-mode2 .noticia-info tr {
+	color: var(--color-black);
+}
+
+.light-mode2 .noticia-info caption {
+	color: var(--color-black);
+}

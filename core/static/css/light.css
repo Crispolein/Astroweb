@@ -396,3 +396,10 @@
     border-left: none;
   }
 }
+.light-mode .noticia-info tr {
+	color: var(--color-black);
+}
+
+.light-mode .noticia-info caption {
+	color: var(--color-black);
+}

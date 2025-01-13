@@ -162,11 +162,16 @@ def ver_articulo(request, id_articulo):
 
 @login_required(login_url='login')
 def lista_articulos(request):
-    # Filtrar los artículos por usuario actual y sección 'Articulo'
-    articulos = Publicacion.objects.filter(
-        seccion__tipo_seccion='Articulo',
-        usuario_creador=request.user
-    )
+    # Verificar si el usuario pertenece al grupo 'admin'
+    if request.user.groups.filter(name='Admin').exists():
+        # Si el usuario es admin, mostrar todas las publicaciones
+        articulos = Publicacion.objects.filter(seccion__tipo_seccion='Articulo')
+    else:
+        # Si el usuario no es admin, mostrar solo sus publicaciones
+        articulos = Publicacion.objects.filter(
+            seccion__tipo_seccion='Articulo',
+            usuario_creador=request.user
+        )
 
     paginator = Paginator(articulos, 10)
     page = request.GET.get('page')
@@ -292,11 +297,16 @@ def crear_galeria(request):
 
 @login_required(login_url='login')
 def lista_galeria(request):
-    # Filtrar las publicaciones por usuario actual
-    galeria_list = Publicacion.objects.filter(
-        seccion__tipo_seccion='Galeria',
-        usuario_creador=request.user  # Filtrar por el usuario actual
-    )
+    # Determinar si el usuario es admin o no
+    if request.user.groups.filter(name='Admin').exists():
+        # Si el usuario es admin, mostrar todas las publicaciones de tipo 'Galeria'
+        galeria_list = Publicacion.objects.filter(seccion__tipo_seccion='Galeria')
+    else:
+        # Si no es admin, filtrar las publicaciones creadas por el usuario
+        galeria_list = Publicacion.objects.filter(
+            seccion__tipo_seccion='Galeria',
+            usuario_creador=request.user
+        )
  
     estado = request.GET.get('estado')
     if estado:
@@ -558,20 +568,30 @@ def crear_noticia(request):
 
 
 
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import render
+from publicaciones.models import Publicacion
+
 @login_required(login_url='login')
 def lista_noticias(request):
-    # Filtrar las noticias por usuario actual y sección 'Noticias'
-    noticias_list = Publicacion.objects.filter(
-        seccion__tipo_seccion='Noticias',
-        usuario_creador=request.user
-    )
+    # Determinar si el usuario es admin o no
+    if request.user.groups.filter(name='Admin').exists():
+        # Si el usuario es admin, mostrar todas las publicaciones de tipo 'Noticias'
+        noticias_list = Publicacion.objects.filter(seccion__tipo_seccion='Noticias')
+    else:
+        # Si no es admin, filtrar las publicaciones creadas por el usuario
+        noticias_list = Publicacion.objects.filter(
+            seccion__tipo_seccion='Noticias',
+            usuario_creador=request.user
+        )
 
-    # Filtrar por estado si es necesario
+    # Filtrar por estado si se proporciona
     estado = request.GET.get('estado')
     if estado:
         noticias_list = noticias_list.filter(estado=estado)
 
-    # Filtrar por título si es necesario
+    # Filtrar por búsqueda en el título si se proporciona
     query = request.GET.get('q')
     if query:
         noticias_list = noticias_list.filter(titulo__icontains=query)
@@ -582,17 +602,19 @@ def lista_noticias(request):
     try:
         noticias = paginator.page(page)
     except PageNotAnInteger:
-        # Si la página no es un entero, entregar la primera página.
+        # Si la página no es un entero, entregar la primera página
         noticias = paginator.page(1)
     except EmptyPage:
-        # Si la página está fuera de rango, entregar la última página de resultados.
+        # Si la página está fuera de rango, entregar la última página de resultados
         noticias = paginator.page(paginator.num_pages)
 
+    # Contexto para la plantilla
     context = {
-        'noticias': noticias
+        'noticias': noticias,
     }
 
     return render(request, 'noticias/lista_noticias.html', context)
+
 
 
 @login_required(login_url='login')

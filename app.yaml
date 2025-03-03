@@ -1,6 +1,7 @@
 runtime: python39
 entrypoint: gunicorn -b :$PORT astro_web.wsgi
 
+
 handlers:
   # Manejo de archivos estáticos comunes (css, js, imágenes)
   - url: /static/css/(.*)
@@ -35,3 +36,9 @@ handlers:
     
 error_handlers:
   - file: 404.html
+
+
+env_variables:
+  GOOGLE_APPLICATION_CREDENTIALS: "/workspace/noche-austral-621ca36c8472.json"
+
+

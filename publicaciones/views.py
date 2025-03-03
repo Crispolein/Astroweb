@@ -213,9 +213,15 @@ def editar_articulo(request, id_articulo):
 @login_required(login_url='login')
 def eliminar_articulo(request, articulo_id):
     articulo = get_object_or_404(Publicacion, idPublicacion=articulo_id)
-    if request.user == articulo.editor:
+    
+    # Verificar si el usuario es el propietario o pertenece al grupo "admin"
+    if request.user == articulo.editor or request.user.groups.filter(name='admin').exists():
         articulo.delete()
+        messages.success(request, 'El artículo ha sido eliminado correctamente.')
         return redirect('lista_articulos')
+    else:
+        messages.error(request, 'No tienes permisos para eliminar este artículo.')
+        return redirect('detalle_articulo', articulo_id=articulo_id)
 
 
 ####### GALERIA ################
@@ -400,9 +406,15 @@ def editar_galeria(request, id_galeria):
 @login_required(login_url='login')
 def eliminar_galeria(request, galeria_id):
     galeria = get_object_or_404(Publicacion, idPublicacion=galeria_id)
-    if request.user == galeria.editor:
+    
+    # Verificar si el usuario es el propietario o pertenece al grupo "admin"
+    if request.user == galeria.editor or request.user.groups.filter(name='Admin').exists():
         galeria.delete()
+        messages.success(request, 'La galería ha sido eliminada correctamente.')
         return redirect('lista_galeria')
+    else:
+        messages.error(request, 'No tienes permisos para eliminar esta galería.')
+        return redirect('detalle_galeria', galeria_id=galeria_id)
 
 ######### NOTICIAS ###############
 
@@ -639,9 +651,15 @@ def editar_noticia(request, id_noticia):
 @login_required(login_url='login')
 def eliminar_noticia(request, noticia_id):
     noticia = get_object_or_404(Publicacion, idPublicacion=noticia_id)
-    if request.user == noticia.editor:
+    
+    # Verificar si el usuario es el propietario o pertenece al grupo "admin"
+    if request.user == noticia.editor or request.user.groups.filter(name='admin').exists():
         noticia.delete()
+        messages.success(request, 'La noticia ha sido eliminada correctamente.')
         return redirect('lista_noticias')
+    else:
+        messages.error(request, 'No tienes permisos para eliminar esta noticia.')
+        return redirect('detalle_noticia', noticia_id=noticia_id)
 
 
 def publicacion_detalle(request, id):

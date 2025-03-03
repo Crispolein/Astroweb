@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import SetPasswordForm, PasswordChangeForm
 import random
 import string
-from django.core.mail import send_mail
+from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
 from django.http import HttpResponse
 from .forms import CreateUserForm
@@ -93,7 +93,7 @@ def regist_user(request):
         if form.is_valid():
             username = form.cleaned_data.get("username")
             email = form.cleaned_data.get("email")
-            role = form.cleaned_data.get("role")  # Obtén el grupo seleccionado
+            role = form.cleaned_data.get("role")
 
             # Verificar si el nombre de usuario ya existe
             if User.objects.filter(username=username).exists():
@@ -108,10 +108,19 @@ def regist_user(request):
                 username=username, email=email, password=random_password
             )
 
-            # Asigna el usuario al grupo correspondiente
+            # Asignar el grupo correspondiente al usuario
             group = Group.objects.get(name=role)
             user.groups.add(group)
 
+            # Asignar is_staff según el rol (si el rol es Admin o Editor)
+            if role in ["Admin", "Editor"]:
+                user.is_staff = True
+            else:
+                user.is_staff = False
+
+            user.save()  # Guardar el usuario después de la modificación
+
+            # Enviar correo de activación
             current_site = get_current_site(request)
 
             mail_subject = "Activa tu cuenta"
@@ -120,9 +129,15 @@ Por favor haz clic en el siguiente enlace para iniciar sesión:
 http://{current_site}/usuarios/login/
 Tu contraseña temporal es: {random_password}
 """
-            send_mail(mail_subject, message, "codemintest@gmail.com", [email])
+            try:
+                send_mail(mail_subject, message, "nocheaustralcl@gmail.com", [email])
+                messages.success(request, "Usuario creado exitosamente y correo enviado.")
+            except BadHeaderError:
+                messages.error(request, "Error al enviar el correo.")
+            except Exception as e:
+                messages.error(request, f"Error inesperado: {str(e)}")
+                return redirect("home")
 
-            messages.success(request, "Usuario creado exitosamente.")
             return redirect("home")
         else:
             messages.error(

@@ -37,12 +37,10 @@ class RegistrationForm(UserCreationForm):
         label="Password",
         widget=forms.PasswordInput(attrs={"placeholder": "Contraseña"}),
     )
-    password2 = (
-        forms.CharField(
-            label="Confirmar contraseña",
-            help_text="Repetir contraseña",
-            widget=forms.PasswordInput(attrs={"placeholder": "Re Enter Password"}),
-        ),
+    password2 = forms.CharField(
+        label="Confirmar contraseña",
+        help_text="Repetir contraseña",
+        widget=forms.PasswordInput(attrs={"placeholder": "Re Enter Password"}),
     )
     group = forms.ModelChoiceField(queryset=Group.objects.all(), required=True)
 
@@ -53,8 +51,20 @@ class RegistrationForm(UserCreationForm):
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
         user.email = self.cleaned_data["email"]
+        
+        # Asignamos is_staff = True si el grupo es "Admin" o "Editor"
+        if self.cleaned_data["group"].name in ["Admin", "Editor"]:  # Verifica el nombre del grupo
+            user.is_staff = True
+        else:
+            user.is_staff = False
+
         if commit:
             user.save()
+
+            # Asignamos el grupo seleccionado al usuario
+            group = self.cleaned_data["group"]
+            user.groups.add(group)  # Asignamos el grupo al usuario
+
         return user
 
 

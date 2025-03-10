@@ -720,7 +720,8 @@ def home_acercade(request):
         )
         my_about.save()
 
-    my_about = Publicacion.objects.filter(seccion=4)
+    my_about = Publicacion.objects.filter(seccion=4).first()
+
 
 
     return render(request, 'acerca_de/home_acercade.html', {'my_about': my_about})

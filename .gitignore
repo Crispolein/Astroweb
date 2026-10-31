@@ -162,3 +162,7 @@ cython_debug/
 astro_web/settings.py
 astro_web/urls.py
 media/
+
+# Credenciales y binarios locales
+noche-austral-*.json
+cloud-sql-proxy.exe
